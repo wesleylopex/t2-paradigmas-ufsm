@@ -16,11 +16,14 @@
   - actives_prices (cotações)
   - transactions (carteira)
 
-Na tela Carteira é possível ver todos os ativos e seus respectivos preços e outras informações.
+Foi usado o mesmo template e sistema do Trabalho 1, porém tudo mudado e adpatado
+conforme requisitos do Trabalho 2 (telas, banco de dados, funcionalidades, etc).
 
-É possível realizar a compra de um ativo (investimento) e escolher a quantidade desejada. O sistema irá mostrar o valor total.
+- Na tela Carteira é possível ver todos os ativos e seus respectivos preços e outras informações.
 
-É possível ver todos os investimento já feitos em uma tabela. Nesta tabela, também é possível ver o valor que foi pago e
+- É possível realizar a compra de um ativo (investimento) e escolher a quantidade desejada. O sistema irá mostrar o valor total.
+
+- É possível ver todos os investimento já feitos em uma tabela. Nesta tabela, também é possível ver o valor que foi pago e
 o valor que está valendo atualmente, junto com a rentabilidade (positiva ou negativa) do valor.
 
-É possível vender (excluir) os investimentos.
+- É possível vender (excluir) os investimentos.
