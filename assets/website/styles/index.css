@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+html, body, * {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+.feather {
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.shadow-link {
+  -webkit-filter: drop-shadow(2px 2px 12px rgba(0, 0, 0, 0.4));
+  filter: drop-shadow(2px 2px 12px rgba(0, 0, 0, 0.4));
+}

@@ -1,0 +1,20 @@
+{
+  "name": "social-links",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "tailwindcss": "npx tailwindcss -i ./assets/website/styles/tailwindcss/tailwind-config.css -o ./assets/website/styles/tailwindcss/tailwind.css",
+    "tailwindcss:admin": "npx tailwindcss -i ./assets/admin/css/tailwindcss/tailwind-config.css -o ./assets/admin/css/tailwindcss/tailwind.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.3.1",
+    "git-commit-msg-linter": "^3.2.6",
+    "postcss": "^8.3.6",
+    "standard": "^16.0.3",
+    "tailwindcss": "^2.2.7"
+  }
+}

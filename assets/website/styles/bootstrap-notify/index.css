@@ -1,0 +1,117 @@
+.alert {
+  border: 0px;
+  position: relative;
+  padding: .95rem 1.25rem;
+  padding-left: 50px !important;
+  transition: all 0.5 ease-in-out;
+}
+
+.alert [data-notify="icon"] {
+  font-size: 20px;
+  display: block;
+  left: 15px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.alert [data-notify="title"] {
+  display: block;
+  font-weight: 500;
+}
+
+.alert [data-notify="message"] {
+  font-size: 13px;
+  margin-right: 40px;
+}
+
+.alert .close {
+  background: rgba(130, 130, 130, 0.8);
+  width: 20px;
+  height: 20px;
+  line-height: 21px;
+  top: 17px !important;
+  border-radius: 50%;
+}
+
+.alert-default,
+.alert-primary {
+  color: #FFF;
+}
+
+.alert-default {
+  background-color: #282a3c;
+}
+
+.alert-primary {
+  background-color: #0A72B9;
+}
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+  animation-name: fadeInDown;
+}
+
+@-webkit-keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+.fadeOutUp {
+  -webkit-animation-name: fadeOutUp;
+  animation-name: fadeOutUp;
+}

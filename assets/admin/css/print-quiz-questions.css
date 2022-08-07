@@ -1,0 +1,208 @@
+html, body {
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+}
+.header, .header-space,
+.footer, .footer-space {
+  height: 5rem;
+}
+.header {
+  position: fixed;
+  top: 0;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+}
+
+.border-b-dashed {
+  border-bottom-style: dashed;
+}
+
+/* Tailwindcss sttuff */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+.container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+@media (min-width: 1792px) {
+  .container {
+    max-width: 1792px;
+  }
+}
+
+@media (min-width: 2048px) {
+  .container {
+    max-width: 2048px;
+  }
+}
+
+.p-12 {
+  padding: 3rem;
+}
+
+.p-20 {
+  padding: 5rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.text-xs {
+  font-size: 0.75rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-base {
+  font-size: 1rem;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+}
+
+.text-6xl {
+  font-size: 4rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.p-1 {
+  padding: 0.25rem;
+}
+
+.pt-0 {
+  padding-top: 0;
+}
+
+.border-b {
+  border-bottom-width: 1px;
+}
+
+.border-black {
+  --border-opacity: 1;
+  border-color: #000;
+  border-color: rgba(0, 0, 0, var(--border-opacity));
+}
