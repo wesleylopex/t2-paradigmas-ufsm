@@ -1,5 +1,5 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<title>T1 Paradigmas UFSM</title>
+<title>T2 Paradigmas UFSM</title>
 <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
 
 <!-- Favicon -->
