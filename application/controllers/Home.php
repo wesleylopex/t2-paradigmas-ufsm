@@ -13,6 +13,7 @@ class Home extends MainController {
   }
 
   public function index () {
+    redirect('wallet');
     $this->load->view('home', $this->data);
   }
 
