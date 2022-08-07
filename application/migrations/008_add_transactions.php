@@ -18,7 +18,7 @@ class Migration_Add_transactions extends CI_Migration {
         'type' => 'INT',
         'constraint' => 11
       ],
-      'quantity_id' => [
+      'quantity' => [
         'type' => 'INT',
         'constraint' => 11
       ],

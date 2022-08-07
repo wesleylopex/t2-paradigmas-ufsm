@@ -14,6 +14,7 @@ function FormValidation () {
     const tooShort = `Campo deve ter pelo menos ${field.minLength} caracteres`
     const messages = {
       text: { valueMissing, tooShort },
+      number: { valueMissing, tooShort },
       email: {
         valueMissing,
         typeMismatch: 'Digite um e-mail válido',

@@ -54,7 +54,42 @@
 						<div class="col-md-12">
 							<div class="card">
 								<div class="card-header">
-									<h1 class="text-base font-semibold">Seus investimentos</h1>
+									<h2 class="text-base font-semibold">Novo investimento</h2>
+								</div>
+								<div class="card-body">
+									<form id="new-investment" action="<?= base_url('wallet/saveInvestment') ?>">
+										<div class="form-row">
+											<div class="form-group col-md-2">
+												<label for="">Ticker do ativo</label>
+												<?= form_dropdown(
+													'active_id',
+													$activesOptions,
+													'',
+													['class' => 'form-control', 'onchange' => 'setAmount()', 'required' => 'required']
+												) ?>
+											</div>
+											<div class="form-group col-md-2 mt-6 md:mt-0">
+												<label for="">Quantidade</label>
+												<input type="number" required name="quantity" min="0" onchange="setAmount()" placeholder="Escolha a quantidade" class="form-control">
+											</div>
+											<div class="form-group col-md-2 mt-0.5">
+												<label for="" class="block">&nbsp;</label>
+												<button class="btn btn-primary">Realizar compra</button>
+											</div>
+										</div>
+										<div class="form-row mt-3">
+											<div class="form-group col-md-12">
+												<h3>Valor total da compra: <span id="amount" class="text-lg text-green-600 font-semibold currency">0</span></h3>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header">
+									<h2 class="text-base font-semibold">Meus investimentos</h2>
 									<?php if ($this->session->flashdata('error') || $this->session->flashdata('success')) : ?>
 										<?php if ($this->session->flashdata('error')) : ?>
 											<div class="mb-4 alert alert-danger d-flex align-items-center justify-content-between" role="alert">
@@ -100,17 +135,60 @@
   <?php $this->load->view('imports/scripts', $this->data) ?>
 	
 	<script>
+		const data = {
+			baseURL: '<?= base_url() ?>'
+		}
+
 		window.addEventListener('load', function () {
-			closeAlert()
+			onQuantityChanges()
+			onNewInvestmentFormSubmits()
 		})
 
-		function closeAlert () {
-			const alert = document.querySelector('.alert')
-			if (!alert) return null
-			const close = alert.querySelector('.close')
-			close.addEventListener('click', () => {
-				alert.remove()
+		function onNewInvestmentFormSubmits () {
+			const form = document.querySelector('form#new-investment')
+
+			form.addEventListener('submit', event => {
+				event.preventDefault()
+				saveInvestment()
 			})
+
+			async function saveInvestment () {
+				const body = new FormData(form)
+
+				const response = await fetch(form.action, {
+					method: 'POST',
+					body
+				}).then(response => response.json())
+
+				if (response.success !== true) {
+					return showNotify(response.error, false)
+				}
+
+				showNotify('Investimento realizado com sucesso')
+				setTimeout(() => window.location.reload(), 2000)
+			}
+		}
+
+		function onQuantityChanges () {
+			document.querySelector('[name="quantity"]').addEventListener('input', setAmount)
+		}
+
+		async function setAmount () {
+			const activeId = document.querySelector('[name="active_id"]').value
+			const quantity = document.querySelector('[name="quantity"]').value
+
+			if (quantity < 0) {
+				return showNotify('Quantidade deve ser maior que ZERO', false)
+			}
+
+			const activePriceResponse = await fetch(`${data.baseURL}wallet/getActivePrice?activeId=${activeId}`).then(response => response.json())
+			
+			if (activePriceResponse.success !== true) {
+				return showNotify(activePriceResponse.error, false)
+			}
+
+			const amount = document.querySelector('#amount')
+			amount.innerText = formatCurrency((activePriceResponse.body.price * quantity).toFixed(2))
 		}
 	</script>
 </body>
