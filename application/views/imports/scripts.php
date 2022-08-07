@@ -36,8 +36,29 @@
     feather.replace()
     initTippy()
     onClipToClipboard()
-    initDatataTable()
+    initDataTable()
+    formatCurrencies()
   })
+
+  function formatCurrencies () {
+    const currencies = document.querySelectorAll('.currency')
+    currencies.forEach(currency => {
+      currency.innerHTML = formatCurrency(currency.innerHTML)
+    })
+  }
+
+  function formatCurrency (value) {
+    const signal = Number(value) < 0 ? '-' : ''
+
+    value = String(value).replace(/\D/g, '')
+    value = Number(value) / 100
+    value = value.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    })
+
+    return signal + value
+  }
 
   function initTippy () {
     const tippies = document.querySelectorAll('[data-tippy-content]')
@@ -110,7 +131,7 @@
     $.notify(alert, options)
   }
 
-  function initDatataTable () {
+  function initDataTable () {
     $('.datatable').dataTable({
       language: {
         url: '<?= base_url('assets/admin/js/datatables/portuguese-brazil.json') ?>'

@@ -14,4 +14,17 @@ class ActiveModel extends MY_Model {
 
 		return $actives;
 	}
+
+	public function getWithPrices (): array {
+		$actives = $this->db->select('actives.*, actives_prices.value as price')
+			->where([
+        'actives_prices.date' => date('Y-m-d')
+			])
+			->join('actives', 'actives.id = actives_prices.active_id')
+			->get('actives_prices')->result();
+
+		if (!$actives) return [];
+
+		return $actives;
+	}
 }
