@@ -18,6 +18,24 @@ class TransactionModel extends MY_Model {
 
 		if (!$transactions) return [];
 
+		foreach ($transactions as $transaction) {
+			$activePrice = $this->db
+				->where([
+					'active_id' => $transaction->active_id,
+					'date' => date('Y-m-d')
+				])
+				->get('actives_prices')
+				->row();
+			
+			if (empty($activePrice)) {
+				$transaction->currentAmount = null;
+				$transaction->profitability = null;
+			}
+
+			$transaction->currentAmount = $activePrice->value * $transaction->quantity;
+			$transaction->profitability = (($transaction->currentAmount / $transaction->amount) - 1) * 100;
+		}
+
 		return $transactions;
 	}
 }

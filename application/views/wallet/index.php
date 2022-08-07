@@ -113,22 +113,36 @@
                           <th>Tipo</th>
                           <th>Ticker</th>
                           <th>Quantidade</th>
-                          <th>Valor pago</th>
                           <th>Data de compra</th>
+                          <th>Valor pago</th>
+                          <th>Valor atual</th>
 													<th>Ações</th>
 												</tr>
 											</thead>
 											<tbody>
 												<?php foreach ($transactions as $transaction) : ?>
 													<tr>
-														<td><?= $transaction->active_type ?></td>
-														<td><?= $transaction->active_ticker ?></td>
-														<td><?= $transaction->quantity ?></td>
-														<td><span class="currency"><?= $transaction->amount ?></span></td>
-														<td><?= date('d/m/Y H:i', strtotime($transaction->created_at)) ?></td>
-														<td class="flex items-center">
-															<button onclick="deleteTransaction(<?= $transaction->id ?>)" class="text-blue-600 border border-blue-600 py-1 px-2 rounded-md">Vender</button>
-															<i class="ml-2 text-blue-600" data-feather="arrow-down-circle"></i>
+														<td class="not-clickable"><?= $transaction->active_type ?></td>
+														<td class="not-clickable"><?= $transaction->active_ticker ?></td>
+														<td class="not-clickable"><?= $transaction->quantity ?></td>
+														<td class="not-clickable"><?= date('d/m/Y H:i', strtotime($transaction->created_at)) ?></td>
+														<td class="not-clickable"><span class="currency"><?= number_format($transaction->amount, 2, '', '') ?></span></td>
+														<td class="not-clickable">
+															<?php if ($transaction->currentAmount !== null) : ?>
+																<div class="flex items-center <?= $transaction->profitability >= 0 ? 'text-green-600' : 'text-red-600' ?>">
+																	<span class="currency"><?= number_format($transaction->currentAmount, 2, '', '') ?></span>
+																	<div class="ml-2 border border-gray-400 flex items-center rounded-md py-1 px-2">
+																		<i class="mr-2" data-feather="<?= $transaction->profitability >= 0 ? 'trending-up' : 'trending-down' ?>"></i>
+																		<span class="text-xs"><?= $transaction->profitability >= 0 ? '+' : '' ?><?= number_format($transaction->profitability, 2) ?>%</span>
+																	</div>
+																</div>
+															<?php endif ?>
+														</td>
+														<td class="not-clickable">
+															<div class="flex items-center">
+																<button data-tippy-content="Clique para vender" onclick="deleteTransaction(<?= $transaction->id ?>)" class="text-blue-600 border border-gray-400 py-1 px-2 rounded-md">Vender</button>
+																<i class="ml-2 text-blue-600" data-feather="arrow-down-circle"></i>
+															</div>
 														</td>
 													</tr>
 												<?php endforeach ?>
