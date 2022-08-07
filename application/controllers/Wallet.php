@@ -24,6 +24,9 @@ class Wallet extends MainController {
 		$this->data['actives'] = $this->ActiveModel->getWithPrices();
 		$this->data['activesOptions'] = arrayToFormDropdownOptions($this->ActiveModel->getAll(), 'id', 'ticker');
 
+		$this->load->model('TransactionModel');
+		$this->data['transactions'] = $this->TransactionModel->getWithForeignData();
+
 		$this->load->view($this->functionalitySlug . '/index', $this->data);
 	}
 
@@ -43,6 +46,21 @@ class Wallet extends MainController {
 				'price' => $activePrice->value
 			]
 		]);
+	}
+
+	public function deleteTransaction () {
+		$transactionId = $this->input->get('transactionId');
+
+		$this->load->model('TransactionModel');
+		$transaction = $this->TransactionModel->getRowWhere(['id' => $transactionId, 'user_id' => $this->user->id]);
+
+		if (!$transaction) {
+			return $this->response(['success' => false, 'error' => 'Transação não encontrada']);
+		}
+
+		$this->TransactionModel->delete($transactionId);
+
+		return $this->response(['success' => true]);
 	}
 
 	public function saveInvestment () {

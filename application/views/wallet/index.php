@@ -111,15 +111,27 @@
 											<thead>
 												<tr>
                           <th>Tipo</th>
-                          <th>Título do ativo</th>
+                          <th>Ticker</th>
                           <th>Quantidade</th>
                           <th>Valor pago</th>
-                          <?php if ($permissions['delete']) : ?>
-                            <th>Excluir</th>
-                          <?php endif ?>
+                          <th>Data de compra</th>
+													<th>Ações</th>
 												</tr>
 											</thead>
 											<tbody>
+												<?php foreach ($transactions as $transaction) : ?>
+													<tr>
+														<td><?= $transaction->active_type ?></td>
+														<td><?= $transaction->active_ticker ?></td>
+														<td><?= $transaction->quantity ?></td>
+														<td><span class="currency"><?= $transaction->amount ?></span></td>
+														<td><?= date('d/m/Y H:i', strtotime($transaction->created_at)) ?></td>
+														<td class="flex items-center">
+															<button onclick="deleteTransaction(<?= $transaction->id ?>)" class="text-blue-600 border border-blue-600 py-1 px-2 rounded-md">Vender</button>
+															<i class="ml-2 text-blue-600" data-feather="arrow-down-circle"></i>
+														</td>
+													</tr>
+												<?php endforeach ?>
 											</tbody>
 										</table>
 									</div>
@@ -171,6 +183,17 @@
 
 		function onQuantityChanges () {
 			document.querySelector('[name="quantity"]').addEventListener('input', setAmount)
+		}
+
+		async function deleteTransaction (transactionId) {
+			const activePriceResponse = await fetch(`${data.baseURL}wallet/deleteTransaction?transactionId=${transactionId}`).then(response => response.json())
+
+			if (activePriceResponse.success !== true) {
+				return showNotify(activePriceResponse.error, false)
+			}
+
+			showNotify('Venda realizada com sucesso')
+			setTimeout(() => window.location.reload(), 2000)
 		}
 
 		async function setAmount () {
