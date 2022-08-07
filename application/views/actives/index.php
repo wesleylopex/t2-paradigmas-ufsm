@@ -46,7 +46,7 @@
 											<?php if ($permissions['create']) : ?>
 												<a href="<?= base_url($functionality->slug . '/create') ?>">
 													<button data-tippy-content="Adicionar" class="bg-primary text-white rounded-sm py-1 px-2">
-														Adicionar livro
+														Adicionar ativo
 													</button>
 												</a>
 											<?php endif ?>
@@ -58,28 +58,22 @@
 										<table class="display table table-striped table-hover datatable">
 											<thead>
 												<tr>
-                          <th>Título</th>
-                          <th>Nome do(s) autor(es)</th>
-                          <th>Edição</th>
-                          <th>Editora</th>
-                          <th>ISBN</th>
-                          <th>Ano</th>
+                          <th>Tipo</th>
+                          <th>Ticker</th>
+                          <th>Empresa</th>
                           <?php if ($permissions['delete']) : ?>
                             <th>Excluir</th>
                           <?php endif ?>
 												</tr>
 											</thead>
 											<tbody>
-												<?php foreach ($books as $book) : ?>
-                          <tr data-href="<?= base_url($functionality->slug . '/update/' . $book->id) ?>">
-                            <td data-tippy-content="Clique p/ editar"><?= $book->title ?></td>
-                            <td data-tippy-content="Clique p/ editar"><?= $book->authors_name ?></td>
-                            <td data-tippy-content="Clique p/ editar"><?= $book->edition ?></td>
-                            <td data-tippy-content="Clique p/ editar"><?= $book->publisher ?></td>
-                            <td data-tippy-content="Clique p/ editar"><?= $book->isbn ?></td>
-                            <td data-tippy-content="Clique p/ editar"><?= $book->year ?></td>
+												<?php foreach ($actives as $active) : ?>
+                          <tr data-href="<?= base_url($functionality->slug . '/update/' . $active->id) ?>">
+                            <td><?= $active->type_title ?></td>
+                            <td><?= $active->ticker ?></td>
+                            <td><?= $active->company_name ?></td>
                             <?php if ($permissions['delete']) : ?>
-                              <td class="not-clickable"><a class="text-blue-600" href="<?= base_url($functionality->slug . '/delete/' . $book->id) ?>">Excluir</a></td>
+                              <td class="not-clickable"><a class="text-blue-600" href="<?= base_url($functionality->slug . '/delete/' . $active->id) ?>">Excluir</a></td>
                             <?php endif ?>
 													</tr>
 												<?php endforeach ?>
@@ -99,7 +93,6 @@
 	
 	<script>
 		window.addEventListener('load', function () {
-			redirectToUpdateScreen()
 			closeAlert()
 		})
 
@@ -110,23 +103,6 @@
 			close.addEventListener('click', () => {
 				alert.remove()
 			})
-		}
-
-		function redirectToUpdateScreen () {
-      document.querySelectorAll('td:not(.not-clickable)').forEach(element => {
-        element.addEventListener('click', () => {
-          window.location.href = element.closest('tr').dataset.href
-        })
-      })
-		}
-
-    function deleteRecord (recordId) {
-      console.log(recordId)
-    }
-
-		function closeConfirmDeletionModal () {
-			const modal = $('#confirm-deletion-modal')
-			modal.modal('hide')
 		}
 	</script>
 </body>
