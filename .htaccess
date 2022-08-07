@@ -1,6 +1,6 @@
 Header set Access-Control-Allow-Origin "*"
 RewriteEngine on
-RewriteBase /t1-paradigmas-ufsm/
+RewriteBase /t2-paradigmas-ufsm/
 # Enforce SSL https://www. 
 # RewriteCond %{HTTPS} !=on
 # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
