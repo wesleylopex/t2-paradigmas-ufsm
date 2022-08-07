@@ -44,7 +44,7 @@
 													<h3 class="text-gray-500 text-xs"><?= $active->company_name ?></h3>
 												</div>
 											</div>
-											<h4 class="font-semibold text-lg mt-6 currency"><?= $active->price ?></h4>
+											<h4 class="font-semibold text-lg mt-6 currency"><?= number_format($active->price, 2, '', '') ?></h4>
 										</li>
 										<?php endforeach ?>
 									</ul>
