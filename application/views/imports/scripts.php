@@ -38,7 +38,17 @@
     onClipToClipboard()
     initDataTable()
     formatCurrencies()
+    closeAlert()
   })
+
+  function closeAlert () {
+    const alert = document.querySelector('.alert')
+    if (!alert) return null
+    const close = alert.querySelector('.close')
+    close.addEventListener('click', () => {
+      alert.remove()
+    })
+  }
 
   function formatCurrencies () {
     const currencies = document.querySelectorAll('.currency')
