@@ -30,10 +30,10 @@ class TransactionModel extends MY_Model {
 			if (empty($activePrice)) {
 				$transaction->currentAmount = null;
 				$transaction->profitability = null;
+			} else {	
+				$transaction->currentAmount = $activePrice->value * $transaction->quantity;
+				$transaction->profitability = (($transaction->currentAmount / $transaction->amount) - 1) * 100;
 			}
-
-			$transaction->currentAmount = $activePrice->value * $transaction->quantity;
-			$transaction->profitability = (($transaction->currentAmount / $transaction->amount) - 1) * 100;
 		}
 
 		return $transactions;
